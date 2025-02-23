@@ -95,19 +95,19 @@ fun TaskInputField(){
 
 
         )
-        FilledTonalButton(
-            onClick = {
-                if(text != "") tasks.add(text) else errorMessage = "Please enter a task."
+        FilledTonalButton( //Button code to kick off the action to transfer the user-entered value to functions.
+            onClick = { //Code for handling when button clicked while textfield is empty.
+                if(text != "") tasks.add(text) else errorMessage = "Please enter a task."  
                  },
             colors = ButtonDefaults.filledTonalButtonColors(
-                containerColor = Color(84, 34, 42)
+                containerColor = Color(84, 34, 42) //Dr Pepper colored button
             ),
-            modifier = Modifier
+            modifier = Modifier //Adds padding and helps text location on the button face.
                 .padding(start = 8.dp)
                 .weight(0.25f),
             contentPadding = PaddingValues(horizontal = 20.dp)
         ) {
-            Text(
+            Text( //Adds text to the button and controls what the text looks like.
                 text = "Add Task",
                 style = TextStyle(fontSize = 18.sp)
             )
@@ -117,7 +117,7 @@ fun TaskInputField(){
 
 @Composable
 fun TaskList(modifier: Modifier = Modifier){
-
+//Lazy column to automatically adjust to list size no matter how many tasks are added by user.
     LazyColumn(modifier = modifier) {
         items(tasks.size){ index ->
             TaskItem(
@@ -132,10 +132,10 @@ fun TaskList(modifier: Modifier = Modifier){
 
 
 }
-@Composable
+@Composable //Takes in user task input and controls how the task is displayed
 fun TaskItem(task: String, onTaskDeleted: (String) -> Unit){
     var checked by remember { mutableStateOf(false) }
-
+//Creates a checkbox that will strikeout the text of the task when checked
     Row {
         Checkbox(
             checked = checked,
@@ -145,11 +145,11 @@ fun TaskItem(task: String, onTaskDeleted: (String) -> Unit){
             text = task,
             style = TextStyle(
                 textDecoration = if (checked) TextDecoration.LineThrough  else TextDecoration.None,
-                color = if(checked) Color(136,127,133) else Color(0,0,0)
+                color = if(checked) Color(136,127,133) else Color(0,0,0) //Text greys out as well when strikethrough is applied
             )
 
         )
-        IconButton(
+        IconButton( //Button allows for the deletion of task if so desired.
             onClick = {onTaskDeleted(task)}) {
             Icon(
                 Icons.Filled.Delete,
