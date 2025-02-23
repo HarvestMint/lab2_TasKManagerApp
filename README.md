@@ -1,5 +1,4 @@
-#Task Mananger App
-A simple app for keeping track of to-do tasks.
+Task Mananger App - A simple app for keeping track of to-do tasks.
 
 To add a task:
 - Enter text into the text field and click the "Add Task" button.
